@@ -1,0 +1,60 @@
+﻿@model List<Doan_ASP.NET_MVC.Models.CartItem>
+
+
+@if (Model == null || Model.Count == 0)
+{
+    <li class="hm-minicart">
+        <div class="hm-minicart-trigger">
+            <span class="item-icon"></span>
+            <span class="item-text">
+                0 Đ
+                <span class="cart-item-count">0</span>
+            </span>
+        </div>
+        
+    </li>
+}
+else
+{
+    <li class="hm-minicart">
+        <div class="hm-minicart-trigger">
+            <span class="item-icon"></span>
+            <span class="item-text">
+                @Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.') Đ
+                <span class="cart-item-count">@Model.Count</span>
+            </span>
+        </div>
+        <span></span>
+        <div class="minicart">
+            <ul class="minicart-product-list">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="single-product.html" class="minicart-product-image">
+                            <img width="48" src="~/@item.Hinh" alt="cart products">
+                        </a>
+                        <div class="minicart-product-details">
+                            <h6><a href="@Url.Action("Product_Detail","Product", new {id = item.SanPhamID })">@item.TenSanPham</a></h6>
+                            <span>@String.Format("{0:#,##0.##}", item.DonGia)đ x @item.SoLuong</span>
+                        </div>
+                        <form action="@Url.Action("XoaKhoiGiomini")" method="get">
+                            <input type="hidden" name="SanPhamID" value="@item.SanPhamID" />
+                            <button class="close" title="Remove" type="submit">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </form>
+                    </li>
+                }
+            </ul>
+            <p class="minicart-total">Tổng: <span> @Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.') VNĐ</span></p>
+            <div class="minicart-button">
+                <a href="@Url.Action("Index","Cart")" class="li-button li-button-fullwidth li-button-dark">
+                    <span>Xem full giỏ</span>
+                </a>
+                <a href="@Url.Action("Checkout","Checkout")" class="li-button li-button-fullwidth">
+                    <span>Thanh toán</span>
+                </a>
+            </div>
+        </div>
+    </li>
+}

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Doan_ASP.NET_MVC.Models.Image_detail>
+
+@{
+    ViewBag.Title = "GetProduct";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <a class="btn btn-success" style="margin-bottom:10px" href="@Url.Action("Create","Categories")"><i class="fa fa-plus"></i></a>
+                        <table id="example1" class="table table-bordered table-striped" method="Get">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.product_image_detail)</th>
+                                    <th>Số lượng</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id="">
+                                        <td>
+                                            <img src="~/@Html.DisplayFor(modelItem => item.product_image_detail)" style="width:150px;height:150px" />
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            <a class='btn btn-default btn-sm' style='margin-left:5px' href="/Categories/Edit/@item.product_id"><i class='fa fa-edit'></i>Sửa</a>
+                                            <a class='btn btn-danger btn-sm' href="/Categories/Delete/@item.product_id" style='margin-left:5px'><i class='fa fa-trash'></i>Xóa</a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.product_image_detail)</th>
+                                    <th>Số lượng</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

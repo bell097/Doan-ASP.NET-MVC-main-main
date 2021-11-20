@@ -1,0 +1,58 @@
+﻿
+@foreach (var item in Model)
+{
+    <div class="col-lg-12">
+        <!-- single-product-wrap start -->
+        <div class="single-product-wrap">
+            <div style="height: 250px" class="product-image">
+                <a href="@Url.Action("Product_Detail","Product", new { id = item.product_id })">
+                    <img src="~/@item.product_image" alt="Li's Product Image">
+                </a>
+                <span class="sticker">New</span>
+            </div>
+            <div class="product_desc">
+                <div class="product_desc_info">
+                    <div class="product-review">
+                        <h5 class="manufacturer">
+                            <a href="shop-left-sidebar.html">Graphic Corner</a>
+                        </h5>
+                        <div class="rating-box">
+                            <ul class="rating">
+                                <li><i class="fa fa-star-o"></i></li>
+                                <li><i class="fa fa-star-o"></i></li>
+                                <li><i class="fa fa-star-o"></i></li>
+                                <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                <li class="no-star"><i class="fa fa-star-o"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h4 style="height:50px"><a class="product_name" href="@Url.Action("Product_Detail","Product", new { id = item.product_id })">@item.product_name</a></h4>
+                    <div class="price-box">
+                        @if (item.sale_id != null)
+                        {
+                            <span class="new-price new-price-2">@String.Format("{0:#,##0.##}", item.productsale) đ</span>
+                            <span class="old-price">@String.Format("{0:#,##0.##}", item.product_price)đ</span>
+                            <span class="discount-percentage">-@item.sale.sale_name%</span>
+                            <div class="countersection">
+                                <div class="li-countdown"></div>
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="new-price new-price-2">@String.Format("{0:#,##0.##}", item.product_price) đ</span>
+                        }
+
+                    </div>
+                </div>
+                <div class="add-actions">
+                    <ul class="add-actions-link">
+                        <li class="add-cart active"><a href="@Url.Action("ThemVaoGio", "Cart", new { sanPhamID = item.product_id })">Thêm vào giỏ</a></li>
+                        <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
+                        <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- single-product-wrap end -->
+    </div>
+}

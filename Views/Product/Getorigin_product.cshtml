@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Doan_ASP.NET_MVC.Models.Origin>
+
+@foreach (var item in Model) { 
+    <ul>
+        <li style="padding-top: 0px"><a href="@Url.Action("Product_Index", "Product", new {id = item.category1 , originid = item.origin_id})">@item.origin_name</a></li>
+    
+    </ul>
+}

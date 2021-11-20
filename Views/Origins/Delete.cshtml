@@ -1,0 +1,31 @@
+﻿@model Doan_ASP.NET_MVC.Models.Origin
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>Bạn có muốn xóa ?</h3>
+@ViewBag.Mes
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.origin_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.origin_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

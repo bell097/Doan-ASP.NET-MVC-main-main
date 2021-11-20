@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Doan_ASP.NET_MVC.Models.BillDetail>
+
+@{
+    ViewBag.Title = "GetDetails";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Truy tiết hóa đơn</h2>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped" method="Get">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Bill.name)
+                                    </th>
+                                    
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Product.product_name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.price)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.soluong)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Bill.name)
+                                    </td>
+                                    
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.productname)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.soluong)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.billdetail_id })
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Bill.name)
+                                    </th>
+                                    
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Product.product_name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.price)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.soluong)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+

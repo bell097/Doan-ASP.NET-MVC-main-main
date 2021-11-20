@@ -1,0 +1,35 @@
+﻿@model Doan_ASP.NET_MVC.Models.Image_detail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Image_detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.product_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.product_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.product_image_detail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product_image_detail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.image_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

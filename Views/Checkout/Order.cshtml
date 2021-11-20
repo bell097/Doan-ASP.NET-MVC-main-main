@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Doan_ASP.NET_MVC.Models.CartItem>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="cart-product-name">Sản phẩm</th>
+                <th class="cart-product-total">Đơn giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr class="cart_item">
+                <td class="cart-product-name">@item.TenSanPham <strong class="product-quantity"> ×@item.SoLuong</strong></td>
+                <td class="cart-product-total"><span class="amount">@String.Format("{0:#,##0.##}", item.DonGia) đ</span></td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="order-total">
+                <th style="font-weight: 700;">Tổng tiền</th>
+                <td><strong><span class="amount">@Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.') VNĐ</span></strong></td>
+            </tr>
+        </tfoot>
+    </table>
+

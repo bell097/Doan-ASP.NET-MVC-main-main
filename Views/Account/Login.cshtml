@@ -1,0 +1,63 @@
+﻿@using Doan_ASP.NET_MVC.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<div class="page-section mb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
+                <!-- Login Form s-->
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="login-form">
+                        <h4 class="login-title">Đăng nhập</h4>
+                        <div class="row">
+                            <div class="col-md-12 col-12 mb-20">
+                                @Html.LabelFor(m => m.Email)
+                                @Html.TextBoxFor(m => m.Email, new { @class = "mb-0", placeholder = "Email" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 mb-20">
+                                @Html.LabelFor(m => m.Password, new { @class = "mb-0" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "mb-0", placeholder = "Mật khẩu" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div style="display: flex; width: 130px; align-items: center; justify-content: space-between;" class="checkbox">
+                                        @Html.LabelFor(m => m.RememberMe)
+
+                                        @Html.CheckBoxFor(m => m.RememberMe, new { style = "margin-bottom: 12px" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-left: 190px;" class="col-md-4 mt-10 mb-20 text-left text-md-right">
+                                <a href="#"> Quên mật khẩu?</a>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button class="register-button mt-0" type="submit">Đăng nhập</button>
+                            </div>
+                            <br>
+                            <br>
+                            <p style=" margin: 22px 0 0 15px;">
+                                @Html.ActionLink("Đăng ký tài khoản mới", "Register",null, new{ @class = "a" ,style = "color:black" })
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+<!-- Login Content Area End Here -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

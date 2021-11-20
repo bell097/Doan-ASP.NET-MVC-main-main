@@ -1,0 +1,128 @@
+﻿@model Doan_ASP.NET_MVC.Models.CartItem
+
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Begin Li's Breadcrumb Area -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <ul>
+                <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                <li class="active">Thanh toán</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Li's Breadcrumb Area End Here -->
+<!--Checkout Area Strat-->
+<div class="checkout-area pt-60 pb-30">
+    <div class="container">
+        
+        <div class="row">
+            <div style="margin-top: 30px;" class="col-lg-6 col-12">
+                <form action="/Checkout/thanhtoan" method="post">
+                    <div class="checkbox-form">
+                        <h3>Chi tiết thanh toán</h3>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="checkout-form-list">
+                                    <label>Họ <span class="required">*</span></label>
+                                    <input placeholder="" type="text" name="firstname">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="checkout-form-list">
+                                    <label>Tên <span class="required">*</span></label>
+                                    <input placeholder="" type="text" name="lastname">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>Tên công ty</label>
+                                    <input placeholder="" type="text" name="companyname">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>Địa chỉ <span class="required">*</span></label>
+                                    <input placeholder="Số đường" type="text" name="address">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>Địa chỉ chi tiết <span class="required">*</span></label>
+                                    <input placeholder="Tòa nhà, số phòng... (không bắt buộc)" type="text" name="addressdetail">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>Tỉnh / Thành phố <span class="required">*</span></label>
+                                    <input type="text" name="city">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>Số điện thoại  <span class="required">*</span></label>
+                                    <input type="text" name="phone">
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="country-select clearfix">
+                                        <label>Phương thức thanh toán <span class="required">*</span></label>
+                                        <select class="nice-select wide" name="payment">
+                                            <option data-display="Chuyển khoản" value="Banktransfer">Chuyển khoản</option>
+                                            <option value="Live">Trực tiếp</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-button-payment">
+                        <input value="Thanh toán" type="submit">
+                    </div>
+                </form>
+            </div>
+            <div  class="col-lg-6 col-12">
+                <div class="your-order">
+                    <h3>Đơn hàng của bạn</h3>
+                    <div class="your-order-table table-responsive">
+                        @{ 
+                            Html.RenderAction("Order", "Checkout");
+                        }
+                    </div>
+                    <div class="payment-method">
+                        <div class="payment-accordion">
+                            <div id="accordion">
+                              
+                                <div class="card">
+                                    <div class="card-header" id="#payment-2">
+                                        <h5 class="panel-title">
+                                            <a href="@Url.Action("PaymentWithPaypal","Checkout")">
+                                                Thanh toán Paypal
+                                                <!-- PayPal Logo --><table border='0' cellpadding='10' cellspacing='0' align='center'><tr><td align='center'></td></tr><tr><td align='center'><a href='@Url.Action("PaymentWithPaypal","Checkout")' title='How PayPal Works' onclick="javascript:window.open('@Url.Action("PaymentWithPaypal","Checkout")','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src='https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png' alt='Checkout with PayPal | Large' /></a></td></tr></table><!-- PayPal Logo -->
+                                            </a>
+                                        </h5>
+                                    </div>
+
+                                </div>
+                             
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Checkout Area End-->

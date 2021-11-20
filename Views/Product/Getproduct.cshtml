@@ -1,0 +1,155 @@
+﻿@model IEnumerable<Doan_ASP.NET_MVC.Models.Product>
+
+
+@foreach (var item in Model)
+{
+    <div class="col-lg-4 col-md-4 col-sm-6 mt-40">
+        <!-- single-product-wrap start -->
+        <div class="single-product-wrap">
+            <div style="height: 350px;" class="product-image">
+                <a href="@Url.Action("Product_Detail","Product", new { id = item.product_id })">
+                    <img style="width: 80%;" src="~/@item.product_image" alt="Li's Product Image">
+                </a>
+                <span class="sticker">New</span>
+            </div>
+            <div class="product_desc">
+                <div class="product_desc_info">
+                    <div class="product-review">
+                        <h5 class="manufacturer">
+                            <a href="product-details.html">Graphic Corner</a>
+                        </h5>
+                        <div class="rating-box">
+                            <ul class="rating">
+                                <li><i class="fa fa-star-o"></i></li>
+                                <li><i class="fa fa-star-o"></i></li>
+                                <li><i class="fa fa-star-o"></i></li>
+                                <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                <li class="no-star"><i class="fa fa-star-o"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h4 style="font-weight:bolder"><a class="product_name" href="@Url.Action("Product_Detail","Product", new { id = item.product_id })">@item.product_name</a></h4>
+                    <div class="price-box">
+                        @if (item.sale_id != null)
+                        {
+                            <span style="font-size:16px" class="new-price new-price-2">@String.Format("{0:#,##0.##}", item.productsale) đ</span>
+                            <span style=" margin-left: 45px; font-size: 16px" class="old-price">@String.Format("{0:#,##0.##}", item.product_price) đ</span>
+                            <span style="font-size:20px" class="discount-percentage">-@item.sale.sale_name%</span>
+                        }
+                        else
+                        {
+                            <span style="font-size:16px" class="new-price new-price-2">@String.Format("{0:#,##0.##}", item.product_price) đ</span>
+                        }
+                    </div>
+                </div>
+                <div class="add-actions">
+                    <ul class="add-actions-link">
+                        <li class="add-cart active"><a href="@Url.Action("ThemVaoGio", "Cart", new { sanPhamID = item.product_id })">Add to cart</a></li>
+                        <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                        <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- single-product-wrap end -->
+    </div>
+
+}
+
+        </div>
+    </div>
+</div>
+<div id="list-view" class="tab-pane product-list-view fade" role="tabpanel">
+    <div class="row">
+        <div class="col">
+            @foreach (var item in Model)
+            {
+                <div class="row product-layout-list">
+                    <div class="col-lg-3 col-md-5 ">
+                        <div class="product-image">
+                            <a href="@Url.Action("Product_Detail","Product", new { id = item.product_id })">
+                                <img src="~/@item.product_image" alt="Li's Product Image">
+                            </a>
+                            <span class="sticker">New</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-7">
+                        <div class="product_desc">
+                            <div class="product_desc_info">
+                                <div class="product-review">
+                                    <h5 class="manufacturer">
+                                        <a href="product-details.html">Graphic Corner</a>
+                                    </h5>
+                                    <div class="rating-box">
+                                        <ul class="rating">
+                                            <li><i class="fa fa-star-o"></i></li>
+                                            <li><i class="fa fa-star-o"></i></li>
+                                            <li><i class="fa fa-star-o"></i></li>
+                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h4><a class="product_name" href="@Url.Action("Product_Detail","Product", new { id = item.product_id })">@item.product_name</a></h4>
+                                <div style="padding-bottom: 10px;" class="price-box">
+                                    @if (item.sale_id != null)
+                                    {
+                                        <span style="font-size:16px" class="new-price new-price-2">@String.Format("{0:#,##0.##}", item.productsale) đ</span>
+                                        <span style=" margin-left: 45px; font-size: 16px" class="old-price">@String.Format("{0:#,##0.##}", item.product_price) đ</span>
+                                        <span style="font-size:20px" class="discount-percentage">-@item.sale.sale_name%</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="font-size:16px" class="new-price new-price-2">@String.Format("{0:#,##0.##}", item.product_price) đ</span>
+                                    }
+                                </div>
+                                <p>@item.product_description </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div style="margin-top: 35px;" class="shop-add-action mb-xs-30">
+                            <ul class="add-actions-link">
+                                <li class="add-cart"><a href="@Url.Action("ThemVaoGio", "Cart", new { sanPhamID = item.product_id })">Add to cart</a></li>
+                                <li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
+                                <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="paginatoin-area">
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <p>Showing 1-12 of 13 item(s)</p>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <ul class="pagination-box">
+                <li>
+                    <a href="@Url.Action("Product_Index", "Product", new { pageid = Convert.ToInt32(Request.QueryString["pageid"]) - 1 , id = ViewBag.id, brandid = Request.QueryString["brandid"], oringinid = Request.QueryString["originid"], saleid = Request.QueryString["saleid"] })" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.dem; i++)
+                {
+                    if (i == Convert.ToInt32(Request.QueryString["pageid"]))
+                    {
+                        <li class="active"><a href="@Url.Action("Product_Index", "Product", new { pageid = i, id = ViewBag.id, brandid = Request.QueryString["brandid"], oringinid = Request.QueryString["originid"], saleid = Request.QueryString["saleid"] })">@i</a></li>
+
+                    }
+                    else 
+                    {
+                        <li><a href="@Url.Action("Product_Index", "Product", new { pageid = i, id = ViewBag.id, brandid = Request.QueryString["brandid"], oringinid = Request.QueryString["originid"], saleid = Request.QueryString["saleid"] })">@i</a></li>
+
+                    }
+
+                }
+                <li>
+                    <a href="@Url.Action("Product_Index", "Product", new { pageid = Convert.ToInt32(Request.QueryString["pageid"]) + 1 , id = ViewBag.id, brandid = Request.QueryString["brandid"], oringinid = Request.QueryString["originid"], saleid = Request.QueryString["saleid"] })" class="Next"> Next <i class="fa fa-chevron-right"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

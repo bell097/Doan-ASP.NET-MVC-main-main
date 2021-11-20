@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Doan_ASP.NET_MVC.Models.Origin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <a class="btn btn-success" onclick="confirmAction()" style="margin-bottom:10px" href="@Url.Action("Create","Origins")"><i class="fa fa-plus"></i></a>
+                        <table id="example1" class="table table-bordered table-striped" method="Get">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.origin_name)</th>
+                                    <th>Số lượng</th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.origin_name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.Products.Count)
+                                        </td>
+                                        <td>
+                                            <a class='btn btn-default btn-sm' style='margin-left:5px' href="/Origins/Edit/@item.origin_id"><i class='fa fa-edit'></i> Sửa</a>
+                                            @if (@item.Products.Count.Equals(0))
+                                            {
+                                                <a class='btn btn-danger btn-sm' style='margin-left:5px' href="/Origins/Delete/@item.origin_id"><i class='fa fa-trash'></i> Xóa</a>
+                                            }
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.origin_name)</th>
+                                    <th>Số lượng</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

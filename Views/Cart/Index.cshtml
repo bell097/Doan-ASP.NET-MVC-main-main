@@ -1,0 +1,89 @@
+﻿@model List<Doan_ASP.NET_MVC.Models.CartItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Shopping Cart Area Strat-->
+
+@if (Model.Count == 0 || Model == null)
+{
+
+<h3 style="text-align: center; margin: 65px; color: red;"> Giỏ hàng trống!!!</h3>
+}
+else
+{
+    <div class="Shopping-cart-area pt-60 pb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                  
+                        <div class="table-content table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="li-product-remove">Xóa</th>
+                                        <th class="li-product-thumbnail">Ảnh</th>
+                                        <th class="cart-product-name">Tên sản phẩm</th>
+                                        <th class="li-product-price">Đơn giá</th>
+                                        <th class="li-product-quantity">Số lượng</th>
+                                        <th class="li-product-subtotal">Tổng tiền</th>
+                                        <th class="li-product-subtotal">Cập nhật</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                      <form action="@Url.Action("SuaSoLuong")" method="post">
+                                        <tr>
+                                            <td class="li-product-remove"><a style="color: #000000; font-size: 25px " href="@Url.Action("XoaKhoiGio", "Cart", new { SanPhamID = item.SanPhamID })" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')"><ion-icon name="trash-outline"></ion-icon></a></td>
+                                            <td class="li-product-thumbnail"><a href="#"><img width="150" src="~/@item.Hinh" alt="Li's Product Image"></a></td>
+                                            <td class="li-product-name"><a style="color: #2a2626" href="#">@item.TenSanPham</a></td>
+                                            <td class="li-product-price"><span class="amount">@String.Format("{0:#,##0.##}", item.DonGia) đ</span></td>
+
+                                            <td class="quantity">
+
+                                                
+                                                <input type="hidden" name="SanPhamID" value="@item.SanPhamID" />
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box" name="soluongmoi" value="@item.SoLuong" type="text">
+
+                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                                </div>
+
+                                            </td>
+                                            <td class="product-subtotal"><span class="amount">@String.Format("{0:#,##0.##}", item.ThanhTien) đ</span></td>
+                                            <td>
+                                                <div style="position: relative; right: 10%;" class="coupon2">
+                                                    <input style="color: black;" class="button" name="update_cart" value="Cập nhật giỏ hàng" type="submit">
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                       </form>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-5 ml-auto">
+                                <div class="cart-page-total">
+                                    <h2>Tổng Tiền</h2>
+                                    <ul>
+                                        <li>Tổng <span>@Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.') VNĐ</span></li>
+                                    </ul>
+                                    <a href="@Url.Action("Checkout","Checkout")">Tiến hành thanh toán</a>
+                                </div>
+                            </div>
+                        </div>
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Shopping Cart Area End-->
+}

@@ -1,0 +1,161 @@
+﻿@model IEnumerable<Doan_ASP.NET_MVC.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <a class="btn btn-success" style="margin-bottom:10px" href="/Admin/Create"><i class="fa fa-plus"></i></a>
+                        <table id="example1" class="table table-bordered table-striped" method="Get">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        
+                                    
+                                        @Html.DisplayNameFor(model => model.Brand.brand_name)
+                                    </th>
+                                    <th>
+                                      
+                                        @Html.DisplayNameFor(model => model.Category.category_name)
+                                    </th>
+                                    <th>
+                                    
+                                        @Html.DisplayNameFor(model => model.product_name)
+                                    </th>
+                                    <th>
+                                     
+                                        @Html.DisplayNameFor(model => model.product_image)
+                                    </th>
+                                    <th>
+                                    
+                                        @Html.DisplayNameFor(model => model.product_price)
+                                    </th>
+
+                                    <th>
+                                     
+                                        @Html.DisplayNameFor(model => model.product_quantity)
+                                    </th>
+                                    <th>
+                                    
+                                        @Html.DisplayNameFor(model => model.product_size)
+                                    </th>
+                                    <th>
+                                      
+                                        @Html.DisplayNameFor(model => model.Origin.origin_name)
+                                    </th>
+                                    <th>
+                                    
+                                        @Html.DisplayNameFor(model => model.hot_product)
+                                    </th>
+                                    <th>
+                                 
+                                        @Html.DisplayNameFor(model => model.sale.sale_name)
+                                    </th>
+                                    <th>
+                                    
+                                        @Html.DisplayNameFor(model => model.productsale)
+                                    </th>
+                                    <td></td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Brand.brand_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Category.category_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.product_name)
+                                    </td>
+                                    <td>
+                                        <a href="/Image_detail/GetProduct/@item.product_id"><img src="~/@item.product_image" width="95" /></a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.product_price)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.product_quantity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.product_size)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Origin.origin_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.hot_product)
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.sale.sale_name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.productsale)</td>
+                                    <td>
+                                        <a class='btn btn-default btn-sm' style='margin-left:5px' href="/Admin/Edit/@item.product_id"><i class='fa fa-edit'></i>Sửa</a>
+                                        <a class='btn btn-danger btn-sm' style='margin-left:5px' href="/Admin/Delete/@item.product_id"><i class='fa fa-trash'></i>Xóa</a>
+                                    </td>
+
+                                </tr>
+                                }
+                            </tbody>
+                            @*<tfoot>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Brand.brand_name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Category.category_name)
+                                    </th>
+                                    <th>
+
+                                        @Html.DisplayNameFor(model => model.product_name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.product_image)
+                                    </th>
+                                    <th>
+
+                                        @Html.DisplayNameFor(model => model.product_price)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.product_quantity)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.product_size)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Origin.origin_name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.hot_product)
+                                    </th>
+                                    <th>@Html.DisplayNameFor(model => model.sale.sale_name)</th>
+                                    <th>@Html.DisplayNameFor(model => model.productsale)</th>
+                                    <th></th>
+
+                                </tr>
+                            </tfoot>*@
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

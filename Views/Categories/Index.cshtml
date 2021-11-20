@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Doan_ASP.NET_MVC.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <a class="btn btn-success" onclick="confirmAction()" style="margin-bottom:10px" href="@Url.Action("Create","Categories")"><i class="fa fa-plus"></i></a>
+                        <table id="example1" class="table table-bordered table-striped" method="Get">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.category_name)</th>
+                                    <th>Số lượng</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr  id="row_@item.category_id">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.category_name)
+                                        </td>
+                                        <td>
+                                            <a href="/Products/GetProductById/@item.category_id">@Html.DisplayFor(m => item.Products.Count)</a>
+                                        </td>
+                                        <td>
+                                            <a class='btn btn-default btn-sm' style='margin-left:5px' href="/Categories/Edit/@item.category_id"><i class='fa fa-edit'></i>Sửa</a>
+                                            @if(@item.Products.Count.Equals(0)) { 
+                                            <a class='btn btn-danger btn-sm' href="/Categories/Delete/@item.category_id" style='margin-left:5px' ><i class='fa fa-trash'></i>Xóa</a>
+                                            }
+                                            
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.category_name)</th>
+                                    <th>Số lượng</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+@*
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Delete Employee</h3>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure ? You want to delete this. </h4>
+
+                <div style="text-align:center;display:none" id="loaderDiv">
+
+                    <img src="~/Content/img/ajax-loader.gif" style="height:200px;width:200px" />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-success" onclick="DeleteEmployee()">Confirm</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<input type="hidden" id="hiddenEmployeeId" />
+
+</div>
+
+
+
+<script>
+
+    var ConfirmDelete = function (EmployeeId) {
+
+        $("#hiddenEmployeeId").val(EmployeeId);
+        $("#myModal").modal('show');
+
+    }
+
+    var DeleteEmployee = function () {
+
+        $("#loaderDiv").show();
+
+        var empId = $("#hiddenEmployeeId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Categories/Delete",
+            data: { EmployeeId: empId },
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#myModal").modal("hide");
+                $("#row_" + empId).remove();
+
+            }
+
+        })
+
+    }
+</script>
+
+    *@

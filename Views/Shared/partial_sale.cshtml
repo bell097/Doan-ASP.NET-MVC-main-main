@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Doan_ASP.NET_MVC.Models.sale>
+@foreach (var item in Model)
+{
+
+    <ul>
+        <li><a href="@Url.Action("Product_Index", "Product", new {id = item.category1 , saleid = item.sale_id })">Product Sale @item.sale_name %</a></li>
+
+    </ul>
+}
